@@ -1,1 +1,0 @@
-// registration of service worker
