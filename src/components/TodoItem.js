@@ -9,6 +9,13 @@ const TodoItem = ({ todo, onDelete }) => {
       .from("todos")
       .update({ is_complete: !isCompleted })
       .eq("id", todo.id);
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.controller.postMessage({
+        todo: todo.task,
+        status: "updated",
+      });
+    }
     if (error) {
       console.error(error);
       return;
